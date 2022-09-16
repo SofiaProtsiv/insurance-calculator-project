@@ -42,6 +42,10 @@ export default function App() {
     setState({ ...state, additional_charges: "" });
   };
 
+  const handleReset = () => {
+    setState(initialState);
+    setResult(0);
+  };
   const {
     insurance_term,
     period_start,
@@ -190,7 +194,7 @@ export default function App() {
               type="reset"
               value=""
               className={style.buttonReset}
-              onClick={() => setState(initialState)}
+              onClick={handleReset}
             />
           </div>
         </div>
