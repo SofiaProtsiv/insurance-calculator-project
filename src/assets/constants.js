@@ -61,23 +61,20 @@ export const ADDITIONAL_CHARGES = [
 export const NUMBER_OF_PEOPLE = [
   {
     label: "1",
-    type: "radio",
     required: true,
-    value: "1",
+    value: 1,
     name: "number_of_people",
   },
   {
     label: "2",
-    type: "radio",
     required: true,
-    value: "2",
+    value: 2,
     name: "number_of_people",
   },
   {
     label: "3",
-    type: "radio",
     required: true,
-    value: "3",
+    value: 3,
     name: "number_of_people",
   },
 ];

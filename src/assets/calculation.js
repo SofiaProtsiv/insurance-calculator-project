@@ -26,10 +26,10 @@ export default function Calculation({
 
     switch (additional_charges) {
       case "cancellation":
-        values.additional_charges = 50;
+        values.additional_charges = 20;
         break;
       case "sport_activities":
-        values.additional_charges = 20;
+        values.additional_charges = 10;
         break;
       default:
         values.additional_charges = 0;
@@ -39,14 +39,15 @@ export default function Calculation({
       annual_price = values.insurance_term * number_of_people;
     } else {
       annual_price =
-        values.insurance_term * number_of_people +
-        (1 + values.additional_charges * 100) / 100;
+        values.insurance_term *
+        number_of_people *
+        (values.additional_charges / 100 + 1);
     }
 
     return annual_price.toFixed(2);
   } else {
     let short_time_price = 0;
-    const days = getNumberOfDays(period_start, period_end);
+    const days = Math.abs(getNumberOfDays(period_start, period_end));
 
     switch (package_type) {
       case "extended":
@@ -61,24 +62,26 @@ export default function Calculation({
 
     switch (additional_charges) {
       case "cancellation":
-        values.additional_charges = "50%";
+        values.additional_charges = 50;
         break;
       case "sport_activities":
-        values.additional_charges = "30%";
+        values.additional_charges = 30;
         break;
       default:
         values.additional_charges = 0;
     }
 
     if (values.additional_charges === 0) {
-      short_time_price =
-        values.insurance_term * number_of_people * Math.abs(days);
+      short_time_price = values.insurance_term * number_of_people * days;
     } else {
       short_time_price =
-        values.insurance_term * number_of_people * Math.abs(days) +
-        (1 + values.additional_charges * 100) / 100;
+        values.insurance_term *
+        number_of_people *
+        days *
+        (values.additional_charges / 100 + 1);
     }
-
+    console.log(`${values.insurance_term} * ${number_of_people} * ${days} +
+    ${values.additional_charges} / 100 + 1`);
     return short_time_price.toFixed(2);
   }
 }

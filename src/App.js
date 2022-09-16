@@ -17,15 +17,16 @@ const initialState = {
   period_end: "",
   package_type: "",
   additional_charges: "",
-  number_of_people: "",
+  number_of_people: 1,
 };
 
 export default function App() {
   const [state, setState] = useState(initialState);
   const [optionalValue, setOptionalValue] = useState(true);
   const [result, setResult] = useState(0);
-  const today = new Date().toISOString().split("T")[0];
 
+  const today = new Date().toISOString().split("T")[0];
+  console.log(state);
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
@@ -34,7 +35,6 @@ export default function App() {
     event.preventDefault();
     const result = Calculation(state);
     setResult(result);
-    event.target.reset();
   };
 
   const handleChangeOptional = () => {
@@ -163,30 +163,36 @@ export default function App() {
             </fieldset>
           ) : null}
 
-          <fieldset
-            className={style.fieldset}
-            id="number_of_people"
-            value={number_of_people}
-            onChange={handleChange}
-          >
-            <legend className={style.title}>Number of people</legend>
-            {NUMBER_OF_PEOPLE.map(({ label, type, required, value, name }) => (
-              <label key={value} className={style.label}>
-                {label}
-                <input
-                  className={style.input}
+          <label className={style.title}>
+            Number of people
+            <select
+              className={style.fieldset}
+              name="number_of_people"
+              value={number_of_people}
+              onChange={handleChange}
+            >
+              {NUMBER_OF_PEOPLE.map(({ label, required, value, name }) => (
+                <option
+                  key={value}
                   required={required}
-                  type={type}
                   value={value}
                   name={name}
-                />
-              </label>
-            ))}
-          </fieldset>
+                >
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
 
-          <button type="submit" className={style.button}>
-            Calculate
-          </button>
+          <div className={style.buttonsWrapper}>
+            <input type="submit" value="Submit" className={style.button} />
+            <input
+              type="reset"
+              value=""
+              className={style.buttonReset}
+              onClick={() => setState(initialState)}
+            />
+          </div>
         </div>
 
         <div className={style.resultWrapper}>
