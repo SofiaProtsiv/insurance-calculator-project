@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import style from "./app.module.scss";
+
 import {
   INSURANCE_TYPE,
   PACKAGE_TYPE,
   ADDITIONAL_CHARGES,
   NUMBER_OF_PEOPLE,
 } from "./assets/constants";
+
 import Calculation from "./assets/calculation";
+
+import style from "./app.module.scss";
 
 const initialState = {
   insurance_term: "",
@@ -16,6 +19,7 @@ const initialState = {
   additional_charges: "",
   number_of_people: "",
 };
+
 export default function App() {
   const [state, setState] = useState(initialState);
   const [optionalValue, setOptionalValue] = useState(true);
@@ -186,7 +190,6 @@ export default function App() {
           <p className={style.text}>Your cost of insurance:</p>
           <p className={style.result}>{result}€</p>
         </div>
-        
       </form>
     </React.Fragment>
   );
