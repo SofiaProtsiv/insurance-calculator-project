@@ -24,6 +24,7 @@ export default function App() {
   const [state, setState] = useState(initialState);
   const [optionalValue, setOptionalValue] = useState(true);
   const [result, setResult] = useState(0);
+  const today = new Date().toISOString().split("T")[0];
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.value });
@@ -88,6 +89,7 @@ export default function App() {
                 value={period_start}
                 onChange={handleChange}
                 className={style.input}
+                min={today}
               />
             </label>
 
@@ -102,6 +104,7 @@ export default function App() {
                 value={period_end}
                 onChange={handleChange}
                 className={style.input}
+                min={today}
               />
             </label>
           </fieldset>
