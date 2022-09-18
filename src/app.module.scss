@@ -47,16 +47,7 @@ body {
 .input {
   margin-left: 20px;
 }
-.button {
-  color: rgb(255, 255, 255);
-  background-color: rgb(0, 116, 77);
-  padding: 12px 30px;
-  font-weight: 900;
-  border: none;
-  border-radius: 20px;
-  text-align: center;
-  cursor: pointer;
-}
+
 .buttonReset {
   width: 25px;
   height: 25px;
@@ -64,6 +55,7 @@ body {
   background-image: url("./assets/undo-arrow.png");
   background-size: cover;
   margin-left: 20px;
+  cursor: pointer;
 }
 .fieldsWrapper {
   width: 40%;
@@ -75,6 +67,16 @@ body {
 .buttonsWrapper {
   display: flex;
   align-items: center;
+}
+.button {
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 116, 77);
+  padding: 12px 30px;
+  font-weight: 900;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
 }
 .text {
   font-size: 32px;

@@ -19,20 +19,22 @@ const initialState = {
   additional_charges: "",
   number_of_people: 1,
 };
+const today = new Date().toISOString().split("T")[0];
 
 export default function App() {
   const [state, setState] = useState(initialState);
   const [optionalValue, setOptionalValue] = useState(true);
   const [result, setResult] = useState(0);
 
-  const today = new Date().toISOString().split("T")[0];
   console.log(state);
+
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const result = Calculation(state);
     setResult(result);
   };
@@ -43,9 +45,11 @@ export default function App() {
   };
 
   const handleReset = () => {
-    setState(initialState);
     setResult(0);
+    setOptionalValue(true);
+    setState(initialState);
   };
+
   const {
     insurance_term,
     period_start,
@@ -62,7 +66,7 @@ export default function App() {
           <h2 className={style.formName}>Insurance calculator</h2>
           <fieldset
             className={style.fieldset}
-            id="insurance_term"
+            name="insurance_term"
             value={insurance_term}
             onChange={handleChange}
           >
@@ -94,6 +98,7 @@ export default function App() {
                 onChange={handleChange}
                 className={style.input}
                 min={today}
+                max={period_end}
               />
             </label>
 
@@ -108,14 +113,14 @@ export default function App() {
                 value={period_end}
                 onChange={handleChange}
                 className={style.input}
-                min={today}
+                min={period_start}
               />
             </label>
           </fieldset>
 
           <fieldset
             className={style.fieldset}
-            id="package_type"
+            name="package_type"
             value={package_type}
             onChange={handleChange}
           >
@@ -140,13 +145,13 @@ export default function App() {
               className={style.input}
               type="checkbox"
               value={optionalValue}
-              onChange={handleChangeOptional}
+              onClick={handleChangeOptional}
             />
           </label>
           {!optionalValue ? (
             <fieldset
               className={style.fieldset}
-              id="additional_charges"
+              name="additional_charges"
               value={additional_charges}
               onChange={handleChange}
             >
@@ -194,7 +199,7 @@ export default function App() {
               type="reset"
               value=""
               className={style.buttonReset}
-              onClick={handleReset}
+              onClick={() => handleReset()}
             />
           </div>
         </div>
