@@ -14,7 +14,7 @@ const initialState = {
   period_start: "",
   period_end: "",
   package_type: "",
-  additional_charges: "",
+  additional_charges: "no_additional_charges",
   number_of_people: 1,
 };
 const today = new Date().toISOString().split("T")[0];
@@ -28,13 +28,11 @@ export default function Calculator() {
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
-  const handleResetAdditionalCharges = () => {
-    setState({ ...state, additional_charges: "" });
-  };
   const incrementCounter = () =>
     setState({ ...state, number_of_people: number_of_people + 1 });
   const decrementCounter = () =>
     setState({ ...state, number_of_people: number_of_people - 1 });
+
   const {
     insurance_term,
     period_start,
@@ -54,13 +52,15 @@ export default function Calculator() {
       }
     } else {
       setResult(0);
-      if (period_end && period_start && package_type) {
+
+      if (period_end && period_start && package_type && insurance_term) {
         setIsStateEmpty(false);
         setResult(result);
       }
     }
   }, [state]);
 
+  console.log(state);
   return (
     <div className={style.container}>
       <h2 className={style.header}>Insurance calculator</h2>
@@ -140,40 +140,27 @@ export default function Calculator() {
           ))}
         </fieldset>
 
-        <form>
-          <fieldset
-            className={style.fieldset}
-            name="additional_charges"
-            value={additional_charges}
-            onChange={handleChange}
-          >
-            <legend className={style.legend}>Any additional charges?</legend>
-            {ADDITIONAL_CHARGES.map(
-              ({ label, type, required, value, name }) => (
-                <React.Fragment key={value}>
-                  <input
-                    id={value}
-                    className={style.input}
-                    required={required}
-                    type={type}
-                    value={value}
-                    name={name}
-                  />
-                  <label className={style.label} htmlFor={value}>
-                    {label}
-                    <button
-                      type="reset"
-                      className={style.buttonDelete}
-                      onClick={handleResetAdditionalCharges}
-                    >
-                      +
-                    </button>
-                  </label>
-                </React.Fragment>
-              )
-            )}
-          </fieldset>
-        </form>
+        <fieldset className={style.fieldset} name="additional_charges">
+          <legend className={style.legend}>Any additional charges?</legend>
+          {ADDITIONAL_CHARGES.map(({ label, type, required, value, name }) => (
+            <React.Fragment key={value}>
+              <input
+                id={value}
+                className={style.input}
+                required={required}
+                type={type}
+                value={value}
+                name={name}
+                checked={additional_charges === value}
+                onChange={handleChange}
+              />
+
+              <label className={style.label} htmlFor={value}>
+                {label}
+              </label>
+            </React.Fragment>
+          ))}
+        </fieldset>
 
         <fieldset className={style.fieldset}>
           <legend className={style.legend}>Number of people </legend>

@@ -14,6 +14,9 @@ export default function Calculation({
     let annual_price = 0;
 
     switch (package_type) {
+      case "basic":
+        values.insurance_term = 39;
+        break;
       case "extended":
         values.insurance_term = 49;
         break;
@@ -21,7 +24,7 @@ export default function Calculation({
         values.insurance_term = 59;
         break;
       default:
-        values.insurance_term = 39;
+        values.insurance_term = 0;
     }
 
     switch (additional_charges) {
@@ -50,6 +53,9 @@ export default function Calculation({
     let days = Math.abs(getNumberOfDays(period_start, period_end));
 
     switch (package_type) {
+      case "basic":
+        values.insurance_term = 1.2;
+        break;
       case "extended":
         values.insurance_term = 1.8;
         break;
@@ -57,7 +63,7 @@ export default function Calculation({
         values.insurance_term = 2.4;
         break;
       default:
-        values.insurance_term = 1.2;
+        values.insurance_term = 0;
     }
 
     switch (additional_charges) {

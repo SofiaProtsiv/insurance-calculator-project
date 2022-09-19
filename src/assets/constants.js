@@ -1,5 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
-
 export const INSURANCE_TYPE = [
   {
     label: "Annual insurance",
@@ -43,6 +41,13 @@ export const PACKAGE_TYPE = [
 
 export const ADDITIONAL_CHARGES = [
   {
+    label: "No",
+    type: "radio",
+    required: false,
+    value: "no_additional_charges",
+    name: "additional_charges",
+  },
+  {
     label: "Cancellation",
     type: "radio",
     required: false,
@@ -55,26 +60,5 @@ export const ADDITIONAL_CHARGES = [
     required: false,
     value: "sport_activities",
     name: "additional_charges",
-  },
-];
-
-export const NUMBER_OF_PEOPLE = [
-  {
-    label: "1",
-    required: true,
-    value: 1,
-    name: "number_of_people",
-  },
-  {
-    label: "2",
-    required: true,
-    value: 2,
-    name: "number_of_people",
-  },
-  {
-    label: "3",
-    required: true,
-    value: 3,
-    name: "number_of_people",
   },
 ];
