@@ -47,7 +47,7 @@ export default function Calculation({
     return annual_price.toFixed(2);
   } else {
     let short_time_price = 0;
-    const days = Math.abs(getNumberOfDays(period_start, period_end));
+    let days = Math.abs(getNumberOfDays(period_start, period_end));
 
     switch (package_type) {
       case "extended":
@@ -80,8 +80,10 @@ export default function Calculation({
         days *
         (values.additional_charges / 100 + 1);
     }
-    console.log(`${values.insurance_term} * ${number_of_people} * ${days} +
-    ${values.additional_charges} / 100 + 1`);
+
     return short_time_price.toFixed(2);
   }
 }
+
+// console.log(`${values.insurance_term} * ${number_of_people} * ${days} +
+// ${values.additional_charges} / 100 + 1`);

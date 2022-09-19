@@ -1,0 +1,165 @@
+@import "../../assets/variables.scss";
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $white-color;
+  width: 510px;
+  height: 650px;
+  border-radius: 20px;
+}
+.header {
+  text-align: center;
+  padding: 16px 0;
+  margin-bottom: 16px;
+  background-color: $accent-color;
+  color: $main-color;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.form {
+  padding: 0 16px;
+  margin-bottom: 54px;
+}
+.fieldset {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  margin-bottom: 24px;
+}
+.legend {
+  font-weight: 700;
+  font-size: $base-font-size;
+  color: $main-color;
+  margin-bottom: 8px;
+  line-height: 100%;
+}
+.input {
+  display: none;
+}
+
+.label {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  padding: 8px 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: $base-font-size;
+  line-height: 100%;
+  align-items: center;
+  color: $black-color;
+
+  border: 1px solid $accent-color;
+  border-radius: 8px;
+  transition: background-color 300ms ease-in-out 0s;
+  cursor: pointer;
+  &:hover {
+    background-color: $accent-color-opacity;
+  }
+  &:not(:last-child) {
+    margin-right: 16px;
+  }
+}
+
+.input[type="radio"]:checked + label {
+  background-color: $accent-color;
+
+  & .buttonDelete {
+    position: absolute;
+    display: block;
+    right: 16px;
+    top: 8px;
+    transform: rotate(45deg);
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+.text {
+  margin: 0 32px;
+}
+.buttonDecrement,
+.buttonIncrement {
+  width: 32px;
+  height: 32px;
+  font-weight: 400;
+  font-size: $base-font-size;
+  line-height: 100%;
+  background-color: $white-color;
+  border: 1px solid $accent-color;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 300ms ease-in-out 0s;
+  &:hover {
+    background-color: $accent-color;
+  }
+}
+.dateRange {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  padding: 8px 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: $base-font-size;
+  line-height: 100%;
+  align-items: center;
+  text-align: start;
+  padding: 8px 32px;
+  color: $black-color;
+
+  border: 1px solid $accent-color;
+  border-radius: 8px;
+  transition: background-color 300ms ease-in-out 0s;
+  &:focus-visible {
+    outline: 1px solid $accent-color;
+  }
+  &:not(:last-child) {
+    margin-right: 16px;
+  }
+}
+.resultText {
+  padding: 16px 0;
+  margin-bottom: 24px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+
+  text-align: center;
+
+  color: $main-color;
+  background: $accent-color;
+  box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.15);
+}
+.additionalText {
+  width: 100%;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  color: $main-color;
+}
+.buttonDelete {
+  display: none;
+}
+
+::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 32px;
+  cursor: pointer;
+}
