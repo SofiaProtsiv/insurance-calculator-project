@@ -42,23 +42,23 @@ export const PACKAGE_TYPE = [
 export const ADDITIONAL_CHARGES = [
   {
     label: "No",
-    type: "radio",
+    type: "checkbox",
     required: false,
     value: "no_additional_charges",
-    name: "additional_charges",
+    name: "no_additional_charges",
   },
   {
     label: "Cancellation",
-    type: "radio",
+    type: "checkbox",
     required: false,
     value: "cancellation",
-    name: "additional_charges",
+    name: "cancellation",
   },
   {
     label: "Sport activities",
-    type: "radio",
+    type: "checkbox",
     required: false,
     value: "sport_activities",
-    name: "additional_charges",
+    name: "sport_activities",
   },
 ];

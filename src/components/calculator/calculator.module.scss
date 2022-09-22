@@ -8,35 +8,35 @@
   background-color: $white-color;
   width: 510px;
   height: 650px;
-  border-radius: 20px;
+  border-radius: 1.25rem;
 }
 .header {
   text-align: center;
-  padding: 16px 0;
-  margin-bottom: 16px;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
   background-color: $accent-color;
   color: $main-color;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1.2;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
 }
 .form {
-  padding: 0 16px;
+  padding: 0 1rem;
   margin-bottom: 54px;
 }
 .fieldset {
   display: flex;
   justify-content: space-between;
   border: none;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 }
 .legend {
   font-weight: 700;
   font-size: $base-font-size;
   color: $main-color;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
   line-height: 100%;
 }
 .input {
@@ -47,7 +47,7 @@
   position: relative;
   width: 100%;
   display: inline-block;
-  padding: 8px 0;
+  padding: 0.5rem 0;
   text-align: center;
   font-weight: 400;
   font-size: $base-font-size;
@@ -56,27 +56,28 @@
   color: $black-color;
 
   border: 1px solid $accent-color;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   transition: background-color 300ms ease-in-out 0s;
   cursor: pointer;
   &:hover {
     background-color: $accent-color-opacity;
   }
   &:not(:last-child) {
-    margin-right: 16px;
+    margin-right: 1rem;
   }
 }
 
-.input[type="radio"]:checked + label {
+.input[type="radio"]:checked + label,
+.input[type="checkbox"]:checked + label {
   background-color: $accent-color;
 
   & .buttonDelete {
     position: absolute;
     display: block;
-    right: 16px;
-    top: 8px;
+    right: 1rem;
+    top: 0.5rem;
     transform: rotate(45deg);
-    font-size: 18px;
+    font-size: 1.1rem;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -89,18 +90,18 @@
   margin: 0 auto;
 }
 .text {
-  margin: 0 32px;
+  margin: 0 2rem;
 }
 .buttonDecrement,
 .buttonIncrement {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   font-weight: 400;
   font-size: $base-font-size;
   line-height: 100%;
   background-color: $white-color;
   border: 1px solid $accent-color;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 300ms ease-in-out 0s;
   &:hover {
@@ -111,31 +112,31 @@
   position: relative;
   width: 100%;
   display: inline-block;
-  padding: 8px 0;
+  padding: 0.5rem 0;
   text-align: center;
   font-weight: 400;
   font-size: $base-font-size;
   line-height: 100%;
   align-items: center;
   text-align: start;
-  padding: 8px 32px;
+  padding: 0.5rem 2rem;
   color: $black-color;
 
   border: 1px solid $accent-color;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   transition: background-color 300ms ease-in-out 0s;
   &:focus-visible {
     outline: 1px solid $accent-color;
   }
   &:not(:last-child) {
-    margin-right: 16px;
+    margin-right: 1rem;
   }
 }
 .resultText {
-  padding: 16px 0;
-  margin-bottom: 24px;
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1.2;
 
   text-align: center;
@@ -160,6 +161,6 @@
 
 ::-webkit-calendar-picker-indicator {
   position: absolute;
-  right: 32px;
+  right: 2rem;
   cursor: pointer;
 }

@@ -27,28 +27,38 @@ export default function Calculation({
         values.insurance_term = 0;
     }
 
-    switch (additional_charges) {
-      case "cancellation":
-        values.additional_charges = 20;
-        break;
-      case "sport_activities":
-        values.additional_charges = 10;
-        break;
-      default:
-        values.additional_charges = 0;
-    }
-
-    if (values.additional_charges === 0) {
-      annual_price = values.insurance_term * number_of_people;
-    } else {
-      annual_price =
+    if (
+      additional_charges.includes("sport_activities") &&
+      additional_charges.includes("cancellation")
+    ) {
+      values.additional_charges = 30;
+      return (annual_price =
         values.insurance_term *
         number_of_people *
-        (values.additional_charges / 100 + 1);
+        (values.additional_charges / 100 + 1)).toFixed(2);
     }
+    if (additional_charges.includes("cancellation")) {
+      values.additional_charges = 20;
+      return (annual_price =
+        values.insurance_term *
+        number_of_people *
+        (values.additional_charges / 100 + 1)).toFixed(2);
+    }
+    if (additional_charges.includes("sport_activities")) {
+      values.additional_charges = 10;
+      return (annual_price =
+        values.insurance_term *
+        number_of_people *
+        (values.additional_charges / 100 + 1)).toFixed(2);
+    } else {
+      values.additional_charges = 0;
+      return (annual_price = values.insurance_term * number_of_people).toFixed(
+        2
+      );
+    }
+  }
 
-    return annual_price.toFixed(2);
-  } else {
+  if (insurance_term === "short_term_insurance") {
     let short_time_price = 0;
     let days = Math.abs(getNumberOfDays(period_start, period_end));
 
@@ -66,28 +76,37 @@ export default function Calculation({
         values.insurance_term = 0;
     }
 
-    switch (additional_charges) {
-      case "cancellation":
-        values.additional_charges = 50;
-        break;
-      case "sport_activities":
-        values.additional_charges = 30;
-        break;
-      default:
-        values.additional_charges = 0;
-    }
-
-    if (values.additional_charges === 0) {
-      short_time_price = values.insurance_term * number_of_people * days;
-    } else {
-      short_time_price =
+    if (
+      additional_charges.includes("sport_activities") &&
+      additional_charges.includes("cancellation")
+    ) {
+      values.additional_charges = 80;
+      return (short_time_price =
         values.insurance_term *
         number_of_people *
         days *
-        (values.additional_charges / 100 + 1);
+        (values.additional_charges / 100 + 1)).toFixed(2);
     }
-
-    return short_time_price.toFixed(2);
+    if (additional_charges.includes("cancellation")) {
+      values.additional_charges = 50;
+      return (short_time_price =
+        values.insurance_term *
+        number_of_people *
+        days *
+        (values.additional_charges / 100 + 1)).toFixed(2);
+    }
+    if (additional_charges.includes("sport_activities")) {
+      values.additional_charges = 30;
+      return (short_time_price =
+        values.insurance_term *
+        number_of_people *
+        days *
+        (values.additional_charges / 100 + 1)).toFixed(2);
+    } else {
+      values.additional_charges = 0;
+      return (short_time_price =
+        values.insurance_term * number_of_people * days).toFixed(2);
+    }
   }
 }
 

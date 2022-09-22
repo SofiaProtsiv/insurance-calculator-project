@@ -14,7 +14,7 @@ const initialState = {
   period_start: "",
   period_end: "",
   package_type: "",
-  additional_charges: "no_additional_charges",
+  additional_charges: ["no_additional_charges"],
   number_of_people: 1,
 };
 const today = new Date().toISOString().split("T")[0];
@@ -23,15 +23,7 @@ export default function Calculator() {
   const [state, setState] = useState(initialState);
   const [isStateEmpty, setIsStateEmpty] = useState(true);
   const [result, setResult] = useState(0);
-
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.value });
-  };
-
-  const incrementCounter = () =>
-    setState({ ...state, number_of_people: number_of_people + 1 });
-  const decrementCounter = () =>
-    setState({ ...state, number_of_people: number_of_people - 1 });
+  const [isCheck, setIsCheck] = useState(["no_additional_charges"]);
 
   const {
     insurance_term,
@@ -41,6 +33,31 @@ export default function Calculator() {
     additional_charges,
     number_of_people,
   } = state;
+
+  const handleChange = ({ target }) => {
+    setState({ ...state, [target.name]: target.value });
+  };
+
+  const handleCheckAdditionalCharges = ({ target }) => {
+    if (target.name === "no_additional_charges") {
+      setIsCheck(["no_additional_charges"]);
+    } else {
+      if (isCheck.includes("no_additional_charges")) {
+        isCheck.splice(0, 1);
+      }
+
+      setIsCheck([...isCheck, target.name]);
+      if (!target.checked) {
+        setIsCheck(isCheck.filter((item) => item !== target.name));
+      }
+    }
+  };
+  // console.log(state);
+
+  const incrementCounter = () =>
+    setState({ ...state, number_of_people: number_of_people + 1 });
+  const decrementCounter = () =>
+    setState({ ...state, number_of_people: number_of_people - 1 });
 
   useEffect(() => {
     const result = Calculation(state);
@@ -52,7 +69,6 @@ export default function Calculator() {
       }
     } else {
       setResult(0);
-
       if (period_end && period_start && package_type && insurance_term) {
         setIsStateEmpty(false);
         setResult(result);
@@ -60,7 +76,32 @@ export default function Calculator() {
     }
   }, [state]);
 
-  console.log(state);
+  useEffect(() => {
+    setState({ ...state, additional_charges: isCheck });
+  }, [additional_charges, isCheck]);
+
+  useEffect(() => {
+    if (insurance_term === "annual_insurance" && period_start) {
+      let date = new Date(
+        new Date(period_start).setFullYear(
+          new Date(period_start).getFullYear() + 1
+        )
+      );
+      let end = new Date(date).toISOString().split("T")[0];
+
+      setState({
+        ...state,
+        period_end: end,
+      });
+    }
+    if (insurance_term === "short_term_insurance") {
+      setState({
+        ...state,
+        period_end: "",
+      });
+    }
+  }, [insurance_term, period_start]);
+
   return (
     <div className={style.container}>
       <h2 className={style.header}>Insurance calculator</h2>
@@ -151,8 +192,8 @@ export default function Calculator() {
                 type={type}
                 value={value}
                 name={name}
-                checked={additional_charges === value}
-                onChange={handleChange}
+                onChange={handleCheckAdditionalCharges}
+                checked={isCheck.includes(name)}
               />
 
               <label className={style.label} htmlFor={value}>
